@@ -45,6 +45,9 @@ func main() {
 
 	runtime.GOMAXPROCS(*goMaxProcs)
 
+	if dialWorkersCount < 1 {
+		log.Fatal("Worker count must be > 1")
+	}
 	victimUri, err := url.Parse(*victimUrl)
 	if err != nil {
 		log.Fatalf("Cannot parse victimUrl=[%s]: [%s]\n", victimUrl, err)
